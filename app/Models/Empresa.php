@@ -11,8 +11,9 @@ class Empresa extends Model
 
     protected $table = 'empresa'; // Especifica la tabla si no sigue la convención de plural
 
-    public function sectores()
+  public function sectores()
     {
         return $this->hasMany(Sector::class, 'id_empresa');
     }
+
 }
