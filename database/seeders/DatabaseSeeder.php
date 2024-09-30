@@ -2,21 +2,19 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Empleado;
+use App\Models\Empresa;
+use App\Models\Sector;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Crear algunas empresas con sectores y empleados relacionados
+        Empresa::factory()
+            ->count(3)
+            ->has(Sector::factory()->count(3)->has(Empleado::factory()->count(5)), 'sectores') // Crear 3 sectores y 5 empleados por sector
+            ->create();
     }
 }
